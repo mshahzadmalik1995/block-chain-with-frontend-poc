@@ -24,8 +24,50 @@ export default function Login() {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send('eth_requestAccounts', []);
         const signer = provider.getSigner();
-        const contractAddress = ''; //add contract address from login.sol
-        const contractABI = []; //add abi from login.json in artifacts
+        const contractAddress = '0x4a4E0513Bb1fb0DA0AbA2f8118DE44976FE11436'; //add contract address from login.sol
+        const contractABI = [
+            {
+              "inputs": [],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "inputs": [],
+              "name": "getUser",
+              "outputs": [
+                {
+                  "internalType": "string",
+                  "name": "",
+                  "type": "string"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "string",
+                  "name": "_username",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "_password",
+                  "type": "string"
+                }
+              ],
+              "name": "login",
+              "outputs": [
+                {
+                  "internalType": "bool",
+                  "name": "",
+                  "type": "bool"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            }]; //add abi from login.json in artifacts
 
         const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
