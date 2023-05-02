@@ -11,6 +11,8 @@
   "dependencies": {
     "@nomiclabs/hardhat-waffle": "^2.0.5",
     "@openzeppelin/contracts": "^4.8.3",
+    "@thirdweb-dev/react": "^3.11.8",
+    "@thirdweb-dev/sdk": "^3.10.11",
     "autoprefixer": "10.4.14",
     "dotenv": "^16.0.3",
     "next": "13.3.1",
@@ -30,7 +32,7 @@
     "@typechain/ethers-v5": "^10.2.0",
     "@typechain/hardhat": "^6.1.5",
     "chai": "^4.3.7",
-    "ethers": "^5.4.0",
+    "ethers": "5",
     "hardhat": "^2.14.0",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",

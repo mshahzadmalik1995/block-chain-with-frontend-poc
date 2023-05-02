@@ -10,6 +10,8 @@ export default function Login() {
     const router = useRouter()
     const userName = process.env.NEXT_PUBLIC_USERNAME;
     const userPwd = process.env.NEXT_PUBLIC_PASSWORD;
+    const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME;
+    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
     const getName = (e) => {
         setName(e.target.value);
@@ -21,7 +23,7 @@ export default function Login() {
     }
     async function handleSubmit(event) {
         event.preventDefault();
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+       /* const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send('eth_requestAccounts', []);
         const signer = provider.getSigner();
         const contractAddress = '0x4a4E0513Bb1fb0DA0AbA2f8118DE44976FE11436'; //add contract address from login.sol
@@ -71,9 +73,9 @@ export default function Login() {
 
         const contract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        const isAuthenticated = await contract.login(name, pwd);
+        const isAuthenticated = await contract.login(name, pwd);*/
 
-        if (isAuthenticated) {
+        /*if (isAuthenticated) {
             console.log(`welcome ${name}`)
             console.log(router)
             // router.push('/Home')
@@ -81,16 +83,19 @@ export default function Login() {
         } else {
             alert('Incorrect password');
             return;
-        }
+        }*/
+        
+        console.log(`welcome ${name}`)
+        router.push('/components/home')
     }
     return (
         <div className="p-5 flex flex-col items-center gap-4 justify-between">
             <div className="header">
                 <h1><b>L'Oréal Blockchain POC</b></h1>
             </div>
-            <input type="text" className="p-2 border-2 rounded" placeholder="Username" onChange={getName} />
-            <input type="password" className="p-2 border-2 rounded" placeholder="Password" onChange={getPwd} />
-            <button className="p-2 bg-sky-500 hover:bg-sky-700 rounded-full" onClick={handleSubmit}>Submit</button>
+            <input type="text" className="p-2 border-2 rounded" placeholder="Enter the Username" onChange={getName} />
+            <input type="password" className="p-2 border-2 rounded" placeholder="Enter the Password" onChange={getPwd} />
+            <button className="p-2 bg-sky-500 hover:bg-sky-700 rounded-full" onClick={handleSubmit}>Login</button>
         </div>
     )
 }

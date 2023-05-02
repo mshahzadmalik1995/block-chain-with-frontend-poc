@@ -1,9 +1,14 @@
 import Link from "next/link"
+import { ConnectWallet, useWallet } from "@thirdweb-dev/react";
 export default function Home() {
+   // const wallter = useWallet()
     return(
         <div className="flex flex-col m-2 gap-2">
             <div className="items-center text-center">
-                 <h1 className="text-red-300">Welcome to L'Oréal HomePage</h1>
+                 <h1 className="text-gray-800  font-bold">Welcome to L'Oréal HomePage</h1>
+                 <div className="float-right">
+                    <ConnectWallet/>
+                 </div>
             </div>
             <nav className="p-5 flex  items-center justify-around">
                 <div>
