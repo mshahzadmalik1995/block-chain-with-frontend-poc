@@ -21,10 +21,10 @@ export default function Login() {
     }
     async function handleSubmit(event) {
         event.preventDefault();
-        if(userName === name && userPwd === pwd){
-          router.push('/components/home')
+        if (userName === name && userPwd === pwd) {
+            router.push('/components/home')
         } else {
-          alert("Wrong Credential!!");
+            alert("Invalid Credentials!!");
         }
         setName("");
         setPwd("")
@@ -34,7 +34,7 @@ export default function Login() {
             <div className="header">
                 <h1><b>L'Oréal Blockchain POC</b></h1>
             </div>
-            <input type="text" value = {name} className="p-2 border-2 rounded" placeholder="Enter the Username" onChange={getName} />
+            <input type="text" value={name} className="p-2 border-2 rounded" placeholder="Enter the Username" onChange={getName} />
             <input type="password" value={pwd} className="p-2 border-2 rounded" placeholder="Enter the Password" onChange={getPwd} />
             <button className="p-2 bg-sky-500 hover:bg-sky-700 rounded-full" onClick={handleSubmit}>Login</button>
         </div>

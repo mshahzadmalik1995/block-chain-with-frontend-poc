@@ -34,6 +34,8 @@
     "@typechain/hardhat": "^6.1.5",
     "chai": "^4.3.7",
     "ethers": "5",
+    "@pinata/sdk": "^2.1.0",
+    "path": "^0.12.7",
     "hardhat": "^2.14.0",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
@@ -41,5 +43,6 @@
   },
   "main": "index.js",
   "repository": "https://github.com/mshahzadmalik1995/block-chain-with-frontend-poc.git",
-  "license": "MIT"
+  "license": "MIT",
+  "author": "tg170996 <tg170996@gmail.com>"
 }
