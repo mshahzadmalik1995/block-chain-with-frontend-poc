@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { ethers } from "ethers";
+import haircutNft from "../haircutNft.json";
+import productNft from "../productNft.json";
+import shampooNft from "../shampooNft.json";
 
 export default function Common({ title }) {
 
@@ -12,16 +15,17 @@ export default function Common({ title }) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await provider.send('eth_requestAccounts', []);
         const signer = provider.getSigner();
-
+        var contractAddress = "";
+        var contractABI = [];
         if (title == "hairCut") {
-            const contractAddress = ''; //add contract address from haircutNft.sol
-            const contractABI = []; //add abi from haircutNft.json in artifacts
+            contractAddress = haircutNft.address;
+            contractABI = haircutNft.abi;
         } else if (title == "product") {
-            const contractAddress = ''; //add contract address from productNft.sol
-            const contractABI = []; //add abi from productNft.json in artifacts
+            contractAddress = productNft.address;
+            contractABI = productNft.abi;
         } else if (title == "shampoo") {
-            const contractAddress = ''; //add contract address from shampooNft.sol
-            const contractABI = []; //add abi from shampooNft.json in artifacts
+            contractAddress = shampooNft.address;
+            contractABI = shampooNft.abi;
         }
 
         const contract = new ethers.Contract(contractAddress, contractABI, signer);
