@@ -1,6 +1,8 @@
 import Link from "next/link"
-import { ConnectWallet, useWallet } from "@thirdweb-dev/react";
+import { ConnectWallet, useDisconnect, useWallet } from "@thirdweb-dev/react";
 export default function Home() {
+
+    const disConnect = useDisconnect()
 
     return(
         <div className="flex flex-col m-2 gap-2">
@@ -11,7 +13,7 @@ export default function Home() {
                         <ConnectWallet/>
                     </div>
                     <div className="float-right">
-                        <Link href="/">
+                        <Link href="/" onClick={disConnect}>
                             <h1 className="p-2 text-white-100 bg-slate-200 hover:bg-sky-700 hover:text-white-100 border-2 rounded-md">
                                 Logout
                             </h1>
