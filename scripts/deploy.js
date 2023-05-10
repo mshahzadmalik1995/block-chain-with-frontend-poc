@@ -58,6 +58,18 @@ async function main() {
         };
         fs.writeFileSync('./pages/shampooNft.json', JSON.stringify(data3));
 
+        const Nft4 = await hre.ethers.getContractFactory("NFTMarketplace");
+        const nft4 = await Nft4.deploy()
+        await nft4.deployed();
+        console.log(`Nft Marketplace deployed to address : ${nft4.address}`);
+        const data4 = {
+            address: nft4.address,
+            abi: JSON.parse(nft4.interface.format('json'))
+        };
+        
+        fs.writeFileSync('./pages/marketplaceNft.json', JSON.stringify(data4));
+
+
     }
 }
 

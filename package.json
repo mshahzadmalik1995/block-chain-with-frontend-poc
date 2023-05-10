@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nomicfoundation/solidity-analyzer-win32-x64-msvc": "^0.1.1",
     "@nomiclabs/hardhat-waffle": "^2.0.5",
     "@openzeppelin/contracts": "^4.8.3",
     "@thirdweb-dev/react": "^3.11.8",
     "@thirdweb-dev/sdk": "^3.10.11",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "dotenv": "^16.0.3",
+    "form-data": "^4.0.0",
     "mongodb": "^5.3.0",
     "next": "13.3.1",
     "postcss": "8.4.23",
@@ -30,19 +33,24 @@
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
     "@nomiclabs/hardhat-ethers": "^2.2.3",
     "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@pinata/sdk": "^2.1.0",
     "@typechain/ethers-v5": "^10.2.0",
     "@typechain/hardhat": "^6.1.5",
     "chai": "^4.3.7",
     "ethers": "5",
-    "@pinata/sdk": "^2.1.0",
-    "path": "^0.12.7",
     "hardhat": "^2.14.0",
     "hardhat-gas-reporter": "^1.0.9",
+    "path": "^0.12.7",
+    "raw-loader": "^4.0.2",
     "solidity-coverage": "^0.8.2",
     "typechain": "^8.1.1"
   },
   "main": "index.js",
   "repository": "https://github.com/mshahzadmalik1995/block-chain-with-frontend-poc.git",
   "license": "MIT",
-  "author": "tg170996 <tg170996@gmail.com>"
+  "author": "tg170996 <tg170996@gmail.com>",
+  "browser": {
+    "fs": false,
+    "os": false
+  }
 }
