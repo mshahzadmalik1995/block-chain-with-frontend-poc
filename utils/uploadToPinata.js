@@ -58,7 +58,7 @@ async function storeTokenUriMetadata(metadata) {
 }
 
 
-export const uploadJSONToIPFS = async(JSONBody) => {
+ const uploadJSONToIPFS = async(JSONBody) => {
     const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
     //making axios POST request to Pinata ⬇️
     return axios 
@@ -84,7 +84,7 @@ export const uploadJSONToIPFS = async(JSONBody) => {
     });
 };
 
-export const uploadFileToIPFS = async(file) => {
+ const uploadFileToIPFS = async(file) => {
     const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
     //making axios POST request to Pinata ⬇️
 
