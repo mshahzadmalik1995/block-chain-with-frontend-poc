@@ -65,6 +65,7 @@ async function getAllNFTs(){
         }
         return item
     }))
+    console.log(items)
     updateFetched(true)
     updateData(items)
 }
@@ -75,8 +76,8 @@ if(!dataFetched){
     return(
         <div>
             <Navbar/>
-            <div className="flex flex-col place-items-center mt-20">
-                <div className="md:text-xl font-bole text-white">
+            <div className="flex flex-col place-items-center mt-3">
+                <div className="md:text-xl font-bold text-white">
                     NFTs
                 </div>
                 <div className="flex mt-5 justify-between flex-wrap max-w-screen-xl text-center">

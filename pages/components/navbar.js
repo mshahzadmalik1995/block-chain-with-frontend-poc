@@ -18,7 +18,7 @@ export default function Navbar() {
                         <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/marketplace">Marketplace</Link>
                     </li>
                     <li>
-                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/sellNFT">SellNFT</Link>
+                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/sellNFT">UploadNft</Link>
                     </li>
                     <li>
                         <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/profile">Profile</Link>

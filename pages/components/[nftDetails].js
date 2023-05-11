@@ -14,8 +14,8 @@ export default function NFTDetails (props) {
     const [currAddress, updateCurrAddress] = useState("0x");
     const router = useRouter()
     //const params = useParams()
-    console.log(router.query.tokenId)
-    const tokenId = router.query.tokenId;
+    console.log(router.query.nftDetails)
+    const tokenId = router.query.nftDetails;
     //const tokenId = params.tokenId;
 
     async function getNFTData(tokenId) {
@@ -38,6 +38,7 @@ export default function NFTDetails (props) {
             name: meta.name,
             description: meta.description
         }
+        console.log(`item : ${item}`)
         updateData(item);
         updateDataFetched(true);
         updateCurrAddress(addr);
@@ -63,7 +64,6 @@ export default function NFTDetails (props) {
     if(typeof data.image == "string"){
         data.image = GetIpfsUrlFromPinata(data.image);
     }
-
     
 
     return(
@@ -71,7 +71,7 @@ export default function NFTDetails (props) {
             <Navbar />
             <div className="flex ml-20 mt-20">
                 <img src={data.image} alt="" className="w-2/5" />
-                <div className="text-xl ml-20 space-y-8 text-white shadow-2xl rounded-lg border-2 p-5">
+                <div className="text-xl ml-20 space-y-8 shadow-2xl rounded-lg border-2 p-5">
                     <div>
                         Name: {data.name}
                     </div>
@@ -91,7 +91,11 @@ export default function NFTDetails (props) {
                     { currAddress != data.owner && currAddress != data.seller ?
                         <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={() => buyNFT(tokenId)}>Buy this NFT</button>
                         : <div className="text-emerald-700">You are the owner of this NFT</div>
+                        
                     }
+                    
+                <button className="p-2 bg-sky-500 rounded-full w-20 disabled:bg-sky-100"
+                    onClick={() => router.back()}>Back</button>
                     
                     <div className="text-green text-center mt-3">{message}</div>
                     </div>
