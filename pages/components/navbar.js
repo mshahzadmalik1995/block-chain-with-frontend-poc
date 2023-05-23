@@ -18,14 +18,20 @@ export default function Navbar() {
                         <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/marketplace">Marketplace</Link>
                     </li>
                     <li>
-                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/sellNFT">UploadNft</Link>
-                    </li>
-                    <li>
-                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/profile">Profile</Link>
+                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/sellNFT">sellNft</Link>
                     </li>
                     <li>
                         <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/home">Home</Link>
                     </li>
+                    <li>
+                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/getAllNfts">AllNfts</Link>
+                    </li>
+                   {/* <li>
+                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/profile">Profile</Link>
+                    </li>
+                    <li>
+                        <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/getUserNfts">UserNft</Link>
+    </li> */}
                 </ul>
             </div>
             <div className="flex gap-2 justify-between">
@@ -40,16 +46,6 @@ export default function Navbar() {
                     </Link>
                 </div>
             </div>
-        {/*<div >
-            <ul className="flex items-center justify-between gap-3">
-                <li>
-                    <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/marketplace">Marketplace</Link>
-                </li>
-                <li>
-                    <Link className="text-gray-800 text-xl hover:underline hover:text-white-100" href="/components/profile">Profile</Link>
-                </li>
-            </ul>
-    </div>*/}
     </div> 
     )
 }

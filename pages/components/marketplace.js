@@ -1,6 +1,9 @@
 import { ethers } from "ethers";
 import { useState } from "react";
 import MarketplaceNft from '../marketplaceNft.json'
+import MarketplaceNftAddress from '../marketplaceNftAddress.json'
+//import hi from '../marketplaceNftAddress.json'
+import HairCutNft from '../haircutNft.json';
 import { GetIpfsUrlFromPinata } from "../../utils/utils";
 import Navbar from "./navbar";
 import NFTTile from "./nfttile";
@@ -43,36 +46,66 @@ const sampleData = [
 const [data, updateData] = useState(sampleData);
 const [dataFetched, updateFetched] = useState(false);
 
-async function getAllNFTs(){
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner()
-    let contract = new ethers.Contract(MarketplaceNft.address, MarketplaceNft.abi, signer);
-    let transaction = await contract.getAllNFTs();
-    const items = await Promise.all(transaction.map(async i => {
-        var tokenURI = await contract.tokenURI(i.tokenId);
-        tokenURI = GetIpfsUrlFromPinata(tokenURI);
-        let meta = await axios.get(tokenURI)
-        meta = meta.data;
-        let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
-        let item = {
-            price, 
-            tokenId: i.tokenId.toNumber(),
-            seller: i.seller,
-            owner: i.owner,
-            image: meta.image,
-            name: meta.name,
-            description: meta.description,
+
+    async function getAllNFTs() {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner()
+        let contract = new ethers.Contract(MarketplaceNftAddress.address, MarketplaceNftAddress.abi, signer);
+        let transaction = await contract.getAllNFTs();
+        let checkhairCut = true;
+        console.log(`transaction ${transaction}`);
+
+        
+        const items = await Promise.all(transaction.map(async i => {
+            
+            try{
+            let hairCutContract = new ethers.Contract(i.nftAddress, HairCutNft.abi, signer);
+            console.log(`i.nftAddress ${i.nftAddress}`)
+            var tokenURI = await hairCutContract.tokenURI(i.tokenId);
+            
+            console.log(`The TokenURI is ${tokenURI}`)
+           // tokenURI = GetIpfsUrlFromPinata(tokenURI);
+
+            const requestURL = tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/")
+                //const tokenURIResponse = await (await fetch(requestURL)).json()
+                const tokenURIResponse = await axios.get(requestURL);
+                console.log(`tokenURIResponse ${JSON.stringify(tokenURIResponse)}`)
+                console.log(`tokenURIResponse ${tokenURIResponse.data}`)
+                const imageURI = tokenURIResponse.data.image
+                console.log(`imageURI ${imageURI}`);
+                const imageURIURL = imageURI.replace("ipfs://", "https://ipfs.io/ipfs/")
+                console.log(`imageURIURL ${imageURIURL}`)
+                //let meta = await axios.get(tokenURI)
+                //meta = meta.data;
+                let price = ethers.utils.formatUnits(i.listPrice.toString(), 'ether');
+                let item = {
+                    price, 
+                    tokenId: i.tokenId.toNumber(),
+                    seller: i.seller,
+                    owner: i.owner,
+                    image: imageURIURL,
+                    name: tokenURIResponse.data.name,
+                    description: tokenURIResponse.data.description,
+                    marketplaceId : i.marketplaceId.toNumber()
+            }
+            return item
+
+        } catch(ex) {
+            console.log(`ex in mp ${ex}`)
         }
-        return item
-    }))
-    console.log(items)
-    updateFetched(true)
-    updateData(items)
-}
+        }))
+        
+        console.log(items)
+        updateFetched(true)
+        updateData(items)
+    }
+
+    
 
 if(!dataFetched){
     getAllNFTs()
 }
+
     return(
         <div>
             <Navbar/>
@@ -81,8 +114,8 @@ if(!dataFetched){
                     NFTs
                 </div>
                 <div className="flex mt-5 justify-between flex-wrap max-w-screen-xl text-center">
-                    {data.map((value, index) =>{
-                        return <NFTTile data={value} key={index} />
+                    {data?.map((value, index) =>{
+                        return  <NFTTile data={value} key={index} />
                     })}
                 </div>
             </div>

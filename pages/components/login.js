@@ -13,6 +13,13 @@ export default function Login() {
     const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME;
     const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
+     
+    async function getData() {
+        await axios.get(`http://localhost:3000/api/startmoralis`).then((response) => {
+            console.log(response);
+        });
+    }
+
     const getName = (e) => {
         setName(e.target.value);
     }
@@ -22,6 +29,7 @@ export default function Login() {
     async function handleSubmit(event) {
         event.preventDefault();
         if (userName === name && userPwd === pwd) {
+            await getData();
             router.push('/components/home')
         } else {
             alert("Invalid Credentials!!");

@@ -69,6 +69,19 @@ async function main() {
         
         fs.writeFileSync('./pages/marketplaceNft.json', JSON.stringify(data4));
 
+        
+
+        const Nft5 = await hre.ethers.getContractFactory("NFTMarketplaceAddress");
+        const nft5 = await Nft5.deploy()
+        await nft5.deployed();
+        console.log(`NFTMarketplaceAddress deployed to address : ${nft5.address}`);
+        const data5 = {
+            address: nft5.address,
+            abi: JSON.parse(nft5.interface.format('json'))
+        };
+        
+        fs.writeFileSync('./pages/marketplaceNftAddress.json', JSON.stringify(data5));
+
 
     }
 }
